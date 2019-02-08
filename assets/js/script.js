@@ -19,7 +19,12 @@ input[0].addEventListener("keyup", function(event) {
     .then((data)=>{
         image[0].src= data.sprites.front_default;
         let arr = [];
-        for(let i = 0; i < 4; i++){
+        let nom = data.moves.length;
+        console.log(nom);
+        if(nom > 4){
+            nom = 4;
+        }
+        for(let i = 0; i < nom; i++){
            arr.push(data.moves[i].move.name)
         } 
         let moves =arr.join(', ');
@@ -37,7 +42,7 @@ input[0].addEventListener("keyup", function(event) {
         if(arr.length > 1){
             element = arr[1]
         }
-        console.log(element)
+        console.log(element);
             switch (element) {
                 case 'fire':
                 document.querySelector('body').style.cssText = "background: url(https://i.pinimg.com/originals/1f/74/fe/1f74fe356703a01e308f510c219733dc.jpg);background-size: cover;"
@@ -124,10 +129,11 @@ input[0].addEventListener("keyup", function(event) {
 
     })
     .catch((err) =>{
-        // console.log(err);
+        console.log(err);
         image[0].src="assets/img/pokemon.png";
         desc[0].innerHTML = 'Unknown pokemon. High chances it does not exist but maybe you found something we do not know about yet!';
         desc[0].style.cssText = "font-size: 0.5em;margin-top: -1.5em;padding: 0 1px 0 0;";
+        document.querySelector('body').style.cssText = "background: linear-gradient(15deg,rgba(41, 41, 41, 1) 4%,rgba(49, 49, 49, 1) 24%,rgba(128, 128, 128, 1) 64%,rgba(138, 138, 138, 1) 70%,rgba(230, 230, 230, 1) 81%,rgba(255, 255, 255, 1) 86%, rgba(220, 220, 220, 1) 89%, rgba(230, 230, 230, 1) 100%);"
         height[0].innerHTML = "N/A";
         height[0].style.cssText = "font-size: 0.65em;";
         weight[0].innerHTML = "N/A";
